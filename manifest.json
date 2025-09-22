@@ -1,0 +1,17 @@
+{
+    "name": "Mias Geburtstagskarte",
+    "short_name": "Birthday Card",
+    "description": "Eine interaktive Geburtstagskarte für Mia",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#667eea",
+    "theme_color": "#667eea",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "favicon.ico",
+            "sizes": "32x32",
+            "type": "image/x-icon"
+        }
+    ]
+}

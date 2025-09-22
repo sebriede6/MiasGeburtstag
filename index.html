@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Happy Birthday Mia! 🎂</title>
+    <link rel="stylesheet" href="styles.css?v=7">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<!-- Geburtstagskarte und Torte, bereinigt -->
+<div class="container">
+    <div class="birthday-card" id="birthdayCard">
+        <div class="card-content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;">
+            <div style="font-size:3.5rem;margin-bottom:10px;">🎂</div>
+            <h1 style="font-family:'Fredoka One',cursive;font-size:2.8rem;color:#ff6b6b;margin-bottom:10px;">Happy Birthday, Mia!</h1>
+            <p style="font-family:'Dancing Script',cursive;font-size:1.7rem;color:#333;margin-bottom:20px;">Du wirst 12 Jahre alt!</p>
+            <button id="startButton" style="font-size:1.3rem;padding:12px 32px;background:#764ba2;color:#fff;border:none;border-radius:20px;box-shadow:0 2px 8px rgba(0,0,0,0.1);cursor:pointer;">Überraschung öffnen 🎉</button>
+        </div>
+    </div>
+    <div class="cake-section" id="cakeSection" style="display:none;">
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;">
+            <h2 style="font-family:'Fredoka One',cursive;font-size:2.2rem;color:#ff6b6b;margin-bottom:10px;">🎂 Deine Geburtstagstorte</h2>
+            <div class="cake" style="position:relative;width:320px;height:220px;margin-bottom:20px;">
+                <div class="candles" style="position:absolute;top:75px;left:50%;transform:translateX(-50%);width:180px;display:flex;justify-content:space-between;gap:4px;z-index:10;">
+                    <!-- 12 Kerzen -->
+                    <div class="candle" data-candle="1"><div class="flame" id="flame1"></div><div class="wick"></div><div class="candle-body"></div></div>
+                    <div class="candle" data-candle="2"><div class="flame" id="flame2"></div><div class="wick"></div><div class="candle-body"></div></div>
+                    <div class="candle" data-candle="3"><div class="flame" id="flame3"></div><div class="wick"></div><div class="candle-body"></div></div>
+                    <div class="candle" data-candle="4"><div class="flame" id="flame4"></div><div class="wick"></div><div class="candle-body"></div></div>
+                    <div class="candle" data-candle="5"><div class="flame" id="flame5"></div><div class="wick"></div><div class="candle-body"></div></div>
+                    <div class="candle" data-candle="6"><div class="flame" id="flame6"></div><div class="wick"></div><div class="candle-body"></div></div>
+                    <div class="candle" data-candle="7"><div class="flame" id="flame7"></div><div class="wick"></div><div class="candle-body"></div></div>
+                    <div class="candle" data-candle="8"><div class="flame" id="flame8"></div><div class="wick"></div><div class="candle-body"></div></div>
+                    <div class="candle" data-candle="9"><div class="flame" id="flame9"></div><div class="wick"></div><div class="candle-body"></div></div>
+                    <div class="candle" data-candle="10"><div class="flame" id="flame10"></div><div class="wick"></div><div class="candle-body"></div></div>
+                    <div class="candle" data-candle="11"><div class="flame" id="flame11"></div><div class="wick"></div><div class="candle-body"></div></div>
+                    <div class="candle" data-candle="12"><div class="flame" id="flame12"></div><div class="wick"></div><div class="candle-body"></div></div>
+                </div>
+                <!-- Torten-Ebenen -->
+                <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:260px;height:50px;background:#a0522d;border-radius:0 0 130px 130px/0 0 50px 50px;z-index:1;"></div>
+                <div style="position:absolute;bottom:40px;left:50%;transform:translateX(-50%);width:200px;height:40px;background:#ffb6b9;border-radius:100px 100px 80px 80px/40px 40px 40px 40px;z-index:2;"></div>
+                <div style="position:absolute;bottom:70px;left:50%;transform:translateX(-50%);width:140px;height:30px;background:#ffe29f;border-radius:70px 70px 60px 60px/30px 30px 30px 30px;z-index:3;"></div>
+            </div>
+            <div class="blow-instruction" id="blowInstruction" style="margin-top:10px;text-align:center;">
+                <div style="font-size:1.3rem;color:#ff6b6b;font-weight:bold;">🎤 Puste ins Mikrofon, um die Kerzen auszublasen! 🌬️</div>
+                <button id="micButton" style="font-size:1.1rem;padding:10px 24px;background:#ff6b6b;color:#fff;border:none;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,0.1);cursor:pointer;margin-top:10px;">Mikrofon aktivieren</button>
+            </div>
+            <div class="success-message" id="successMessage" style="display:none;margin-top:20px;">
+                <canvas id="confettiCanvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:999;"></canvas>
+                <h2 id="birthdayMessage" style="display:none;font-family:'Dancing Script',cursive;font-size:3rem;color:#ff7e7e;text-align:center;margin-top:2rem;">Alles Gute zum Geburtstag, Mia!</h2>
+                <img id="birthdayPhoto" src="mia.jpg" alt="Geburtstagsfoto" style="display:none;margin:2rem auto 0 auto;max-width:350px;width:100%;border-radius:18px;box-shadow:0 4px 24px rgba(0,0,0,0.12);">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="script.js?v=8"></script>

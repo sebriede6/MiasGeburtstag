@@ -1,0 +1,582 @@
+/* Grundlegende Stile */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+/* entfernt: überflüssige Klammer */
+
+body {
+    font-family: 'Dancing Script', cursive;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+/* entfernt: überflüssige Klammer */
+/* entfernt: überflüssige Klammer */
+
+/* Hintergrund-Animation */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.3)"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>');
+    animation: twinkle 3s infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+ .container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+}
+}
+
+/* Karten-Styling - Einfache Slide-Animation */
+ .birthday-card {
+    width: 600px;
+    height: 500px;
+    max-width: 95vw;
+    max-height: 90vh;
+    position: relative;
+    cursor: pointer;
+    overflow: visible;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.birthday-card.opened .card-front {
+    transform: perspective(1200px) rotateY(-120deg);
+    z-index: 1;
+}
+
+.birthday-card.opened .card-inside {
+    transform: perspective(1200px) rotateY(0deg);
+    z-index: 2;
+}
+
+.card-front,
+.card-inside {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: transform 1.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    backface-visibility: hidden;
+}
+
+.card-front {
+    background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+    background-size: 400% 400%;
+    animation: gradientShift 4s ease infinite;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.card-inside {
+    background: linear-gradient(135deg, #ffeaa7, #fab1a0, #fd79a8, #e17055);
+    padding: 15px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 2;
+    transform: perspective(1200px) rotateY(120deg);
+    overflow: visible;
+    transition: transform 1.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+}
+
+.card-front {
+    background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+    background-size: 400% 400%;
+    animation: gradientShift 4s ease infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.card-inside {
+    background: linear-gradient(135deg, #ffeaa7, #fab1a0, #fd79a8, #e17055);
+    /* transform: rotateY(-180deg); entfernt, da Slide-Animation verwendet wird */
+    padding: 15px;
+    overflow: hidden;
+    left: 50%;
+    border-radius: 0 20px 20px 0;
+    transform-origin: left center;
+    width: 50%;
+}
+
+.front-content {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.front-content h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+.birthday-icon {
+    font-size: 4rem;
+    margin: 20px 0;
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.front-content p {
+    font-size: 1.4rem;
+    opacity: 0.9;
+}
+
+/* Innenseite der Karte */
+.inside-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.birthday-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+    word-break: break-word;
+    max-width: 95%;
+    animation: colorCycle 3s infinite;
+}
+
+@keyframes colorCycle {
+    0% { color: #ff6b6b; }
+    25% { color: #4ecdc4; }
+    50% { color: #45b7d1; }
+    75% { color: #f9ca24; }
+    100% { color: #ff6b6b; }
+}
+
+.age {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+    word-break: break-word;
+    max-width: 95%;
+}
+
+/* Torte und Kerzen */
+.cake-container {
+    margin: 10px 0;
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cake {
+    position: relative;
+    width: 180px;
+    height: 120px;
+}
+
+.candles {
+    position: relative;
+    margin: 0 auto 10px auto;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 220px;
+}
+
+.candle {
+    position: relative;
+    width: 8px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.candle:hover {
+    transform: scale(1.1);
+}
+
+.candle-body {
+    width: 8px;
+    height: 22px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
+    border-radius: 2px;
+    position: absolute;
+    bottom: 0;
+    animation: candleShine 2s infinite;
+}
+
+@keyframes candleShine {
+    0%, 100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+    50% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); }
+}
+
+.wick {
+    width: 2px;
+    height: 8px;
+    background: #333;
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 1px;
+}
+
+.flame {
+    width: 6px;
+    height: 10px;
+    background: radial-gradient(circle, #ffa500, #ff4500);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: flicker 0.5s infinite alternate;
+    box-shadow: 0 0 8px #ff4500;
+}
+
+@keyframes flicker {
+    0% {
+        transform: translateX(-50%) scale(1) rotate(-2deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) scale(1.1) rotate(2deg);
+        opacity: 0.8;
+    }
+}
+
+.flame.extinguished {
+    display: none;
+}
+
+/* Tortenschichten */
+.cake-layer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+}
+
+.cake-bottom {
+    width: 180px;
+    height: 35px;
+    background: linear-gradient(145deg, #8b4513, #a0522d);
+    bottom: 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cake-middle {
+    width: 140px;
+    height: 28px;
+    background: linear-gradient(145deg, #dda0dd, #ba55d3);
+    bottom: 25px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cake-top {
+    width: 100px;
+    height: 22px;
+    background: linear-gradient(145deg, #ffb6c1, #ff69b4);
+    bottom: 45px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Geburtstagsnachricht */
+.birthday-message {
+    margin: 10px 0;
+    font-size: 0.9rem;
+    line-height: 1.3;
+}
+
+.birthday-message p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+    animation: fadeInUp 1s ease-out;
+    word-break: break-word;
+    max-width: 95%;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mikrofon-Anweisungen */
+.blow-instruction {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: block;
+    text-align: center;
+}
+
+.blow-instruction p {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    word-break: break-word;
+    max-width: 95%;
+}
+
+#micButton {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+#micButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+}
+
+#micButton:active {
+    transform: translateY(0);
+}
+
+#micButton.active {
+    background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(78, 205, 196, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0); }
+}
+
+/* Erfolgsnachricht */
+.success-message {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px 0;
+    text-shadow: none;
+    animation: celebrationBounce 0.5s ease-out;
+}
+
+@keyframes celebrationBounce {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-message h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: #ff6b6b;
+}
+
+.confetti {
+    font-size: 1.5rem;
+    margin-top: 8px;
+    animation: confettiDance 2s infinite;
+}
+
+@keyframes confettiDance {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(90deg); }
+    50% { transform: translateY(0) rotate(180deg); }
+    75% { transform: translateY(-5px) rotate(270deg); }
+}
+
+/* Mobile Optimierung */
+@media (max-width: 480px) {
+    .container {
+        max-width: 350px;
+        margin: 10px;
+    }
+    
+    .birthday-card {
+        height: 500px;
+    }
+    
+    .front-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .birthday-title {
+        font-size: 1.2rem;
+    }
+    
+    .cake {
+        width: 160px;
+        height: 120px;
+    }
+    
+    .cake-bottom {
+        width: 160px;
+        height: 35px;
+    }
+    
+    .cake-middle {
+        width: 130px;
+        height: 28px;
+        bottom: 25px;
+    }
+    
+    .container {
+        max-width: 98vw;
+        margin: 2vw;
+    }
+    .birthday-card {
+        width: 98vw;
+        height: 98vw;
+        min-height: 400px;
+        max-width: 100vw;
+        max-height: 100vh;
+    }
+    .front-content h1 {
+        font-size: 1.4rem;
+    }
+    .birthday-title {
+        font-size: 1.4rem;
+    }
+    .age {
+        font-size: 1rem;
+    }
+    .birthday-message p {
+        font-size: 1rem;
+    }
+    .blow-instruction p {
+        font-size: 0.9rem;
+    }
+    .cake {
+        width: 160px;
+        height: 120px;
+    }
+    .cake-bottom {
+        width: 160px;
+        height: 35px;
+    }
+    .cake-middle {
+        width: 130px;
+        height: 28px;
+        bottom: 25px;
+    }
+    .card-inside {
+        padding: 8px;
+    }
+}
+
+/* Spezielle Effekte für ausgeblasene Kerzen */
+.candle.blown-out .flame {
+    animation: extinguish 0.5s ease-out forwards;
+}
+
+@keyframes extinguish {
+    0% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(-50%) scale(0.5) translateY(-10px);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateX(-50%) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Rauch-Effekt nach dem Ausblasen */
+.candle.blown-out::after {
+    content: '💨';
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    opacity: 0;
+    animation: smoke 2s ease-out;
+}
+
+@keyframes smoke {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(0);
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+}
